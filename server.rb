@@ -1,8 +1,9 @@
 require 'socket'
+require_relative './mock/mock'
+require_relative './mock/mime'
 
 PORT = 1234
 ENDPOINT='0.0.0.0'
-PUBLIC_DIR_PATH='./public'
 
 server = Socket.new(Socket::AF_INET, Socket::SOCK_STREAM)
 
@@ -21,24 +22,5 @@ loop do
   print 'Remote address: '
   p connection.remote_address
 
-  method, path, http_version = connection.gets.split
-
-  if method == "GET"
-    path = path == '/' ? '/index.html' : path
-    file_path = PUBLIC_DIR_PATH + path
-
-    if File.exist?(file_path)
-      response_body = File.read(file_path)
-
-      connection.write("HTTP/1.1 200 OK\r\n" +
-        "Content-Length: #{response_body.length}\r\n" +
-        "\r\n" +
-        response_body
-      )
-    else
-      connection.write("HTTP/1.1 404 Not Found\r\n")
-    end
-  end
-
-  connection.close_write
+  Mock.call(connection)
 end
