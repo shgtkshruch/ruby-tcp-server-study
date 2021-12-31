@@ -2,6 +2,7 @@ require 'socket'
 
 PORT = 1234
 ENDPOINT='0.0.0.0'
+PUBLIC_DIR_PATH='./public'
 
 server = Socket.new(Socket::AF_INET, Socket::SOCK_STREAM)
 
@@ -23,8 +24,11 @@ loop do
   method, path, http_version = connection.gets.split
 
   if method == "GET"
-    if path == '/'
-      response_body = 'Hello World'
+    path = path == '/' ? '/index.html' : path
+    file_path = PUBLIC_DIR_PATH + path
+
+    if File.exist?(file_path)
+      response_body = File.read(file_path)
 
       connection.write("HTTP/1.1 200 OK\r\n" +
         "Content-Length: #{response_body.length}\r\n" +
