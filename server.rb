@@ -23,7 +23,7 @@ loop do
   response_body = 'Hello World'
 
   connection.write("HTTP/1.1 200 OK\r\n" +
-    "Connection: close\r\n" +
+    "Content-Length: #{response_body.length}\r\n" +
     "\r\n" +
     response_body
   )
