@@ -1,3 +1,6 @@
+require_relative './content_length'
+require_relative './mime'
+
 module Mock
   PUBLIC_DIR_PATH='./public'
 
@@ -12,11 +15,15 @@ module Mock
 
       if File.exist?(file_path)
         response_body = File.read(file_path)
-        header = MIME.call(request_line)
+        status_line = "HTTP/1.1 200 OK"
+        headers = []
 
-        connection.write("HTTP/1.1 200 OK\r\n" +
-          "Content-Length: #{response_body.length}\r\n" +
-          "#{header}\r\n" +
+        status_line, headers, body = ContentLength.new(request_line).call(status_line, headers, body)
+        status_line, headers, body = MIME.new(request_line).call(status_line, headers, body)
+
+        connection.write(status_line + "\r\n" +
+          "#{headers.join("\r\n")}" +
+          "\r\n" +
           "\r\n" +
           response_body
         )

@@ -1,6 +1,5 @@
 require 'socket'
 require_relative './mock/mock'
-require_relative './mock/mime'
 
 PORT = 1234
 ENDPOINT='0.0.0.0'
