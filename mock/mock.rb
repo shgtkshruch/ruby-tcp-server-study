@@ -2,6 +2,7 @@ require_relative './content_length'
 require_relative './files'
 require_relative './mime'
 require_relative './head'
+require_relative './options'
 
 module Mock
   PUBLIC_DIR_PATH='./public'
@@ -9,7 +10,8 @@ module Mock
     Files,
     ContentLength,
     MIME,
-    HEAD
+    HEAD,
+    Options
   ]
 
   def self.call(connection)
