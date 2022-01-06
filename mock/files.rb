@@ -7,7 +7,7 @@ module Mock
     def call(status_line, headers, body)
       method, path, http_version = @request_line.split
 
-      if method == "GET"
+      if %w[GET HEAD].include?(method)
         path = path == '/' ? '/index.html' : path
         file_path = PUBLIC_DIR_PATH + path
 
@@ -17,13 +17,13 @@ module Mock
         else
           status_line = "HTTP/1.1 404 Not Found"
         end
-
-        [
-          status_line,
-          headers,
-          body
-        ]
       end
+
+      [
+        status_line,
+        headers,
+        body
+      ]
     end
   end
 end

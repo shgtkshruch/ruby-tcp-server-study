@@ -1,13 +1,15 @@
 require_relative './content_length'
 require_relative './files'
 require_relative './mime'
+require_relative './head'
 
 module Mock
   PUBLIC_DIR_PATH='./public'
   Middlewares = [
     Files,
     ContentLength,
-    MIME
+    MIME,
+    HEAD
   ]
 
   def self.call(connection)

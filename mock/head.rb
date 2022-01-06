@@ -1,5 +1,5 @@
 module Mock
-  class ContentLength
+  class HEAD
     def initialize(request_line)
       @request_line = request_line
     end
@@ -7,8 +7,10 @@ module Mock
     def call(status_line, headers, body)
       method, path, http_version = @request_line.split
 
-      if %w[GET HEAD].include?(method)
-        headers.push("Content-Length: #{body.length}")
+      # https://datatracker.ietf.org/doc/html/rfc2616#section-9.4
+      if method == 'HEAD'
+        status_line = 'HTTP/1.1 200 OK'
+        body = ''
       end
 
       [
