@@ -1,11 +1,11 @@
 module Mock
   class Files
-    def initialize(request_line)
-      @request_line = request_line
+    def initialize(request)
+      @request = request
     end
 
     def call(status_line, headers, body)
-      method, path, http_version = @request_line.split
+      method, path, http_version = @request.line.split
 
       if %w[GET HEAD].include?(method)
         path = path == '/' ? '/index.html' : path

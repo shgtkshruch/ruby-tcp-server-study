@@ -1,11 +1,11 @@
 module Mock
   class Options
-    def initialize(request_line)
-      @request_line = request_line
+    def initialize(request)
+      @request= request
     end
 
     def call(status_line, headers, body)
-      method, path, http_version = @request_line.split
+      method, path, http_version = @request.line.split
 
       if method == 'OPTIONS'
         status_line = 'HTP/1.1 200 OK'

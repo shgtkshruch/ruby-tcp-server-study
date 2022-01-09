@@ -4,6 +4,8 @@ require_relative './mime'
 require_relative './head'
 require_relative './options'
 
+require_relative './request'
+
 module Mock
   PUBLIC_DIR_PATH='./public'
   Middlewares = [
@@ -15,14 +17,14 @@ module Mock
   ]
 
   def self.call(connection)
-    request_line = connection.gets
+    request = Request.new(connection)
 
     status_line = ''
     headers = []
     body = ''
 
     Middlewares.each do |m|
-      status_line, headers, body = m.new(request_line).call(status_line, headers, body)
+      status_line, headers, body = m.new(request).call(status_line, headers, body)
      end
 
     # rfc2616 4.1 Message Types
