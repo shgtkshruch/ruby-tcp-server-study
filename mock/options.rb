@@ -8,7 +8,7 @@ module Mock
       method, path, http_version = @request.line.split
 
       if method == 'OPTIONS'
-        status_line = 'HTP/1.1 200 OK'
+        status_line = 'HTTP/1.1 200 OK'
         body = ''
         headers.push('Allow: OPTIONS, GET, HEAD')
       end
