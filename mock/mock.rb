@@ -1,5 +1,6 @@
 require_relative './basic_auth'
 require_relative './content_length'
+require_relative './date'
 require_relative './files'
 require_relative './mime'
 require_relative './head'
@@ -10,6 +11,7 @@ require_relative './request'
 module Mock
   PUBLIC_DIR_PATH='./public'
   Middlewares = [
+    Date,
     Files,
     ContentLength,
     MIME,
