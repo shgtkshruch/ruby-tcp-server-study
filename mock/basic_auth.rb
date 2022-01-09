@@ -22,11 +22,7 @@ module Mock
         end
       end
 
-      [
-        status_line,
-        headers,
-        body
-      ]
+      [status_line, headers, body]
     end
 
     private

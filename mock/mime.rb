@@ -18,11 +18,7 @@ module Mock
         headers.push("Content-Type: #{MIME_TYPE.fetch(extname)}")
       end
 
-      [
-        status_line,
-        headers,
-        body
-      ]
+      [status_line, headers, body]
     end
   end
 end

@@ -9,11 +9,7 @@ module Mock
         headers.push("Content-Length: #{body.length}")
       end
 
-      [
-        status_line,
-        headers,
-        body
-      ]
+      [status_line, headers, body]
     end
   end
 end

@@ -12,11 +12,7 @@ module Mock
       # https://docs.ruby-lang.org/ja/latest/method/Time/s/httpdate.html
       headers.push("Date: #{Time.now.httpdate}")
 
-      [
-        status_line,
-        headers,
-        body
-      ]
+      [status_line, headers, body]
     end
   end
 end

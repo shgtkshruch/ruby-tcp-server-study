@@ -11,11 +11,7 @@ module Mock
         headers.push('Allow: OPTIONS, GET, HEAD')
       end
 
-      [
-        status_line,
-        headers,
-        body
-      ]
+      [status_line, headers, body]
     end
   end
 end
