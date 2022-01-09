@@ -1,7 +1,7 @@
 require 'socket'
 require_relative './mock/mock'
 
-PORT = 1235
+PORT = 1234
 ENDPOINT='0.0.0.0'
 
 # Socket::AF_INET: => 2

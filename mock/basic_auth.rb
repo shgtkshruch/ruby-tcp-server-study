@@ -11,18 +11,20 @@ module Mock
       @request = request
     end
 
-    def call(status_line, headers, body)
+    def call(status, headers, body)
       if @request.path.include?(SECRET_PATH)
         if authorization? && token_valid?
-          status_line = 'HTTP/1.1 200 ok'
+          status = 200
         else
-          status_line = 'HTTP/1.1 401 Unauthorized'
-          headers.push('WWW-Authenticate: Basic realm="This is secret page"')
+          status = 401
+          headers.clear.push(
+            'WWW-Authenticate: Basic realm="This is secret page"'
+          )
           body = ''
         end
       end
 
-      [status_line, headers, body]
+      [status, headers, body]
     end
 
     private

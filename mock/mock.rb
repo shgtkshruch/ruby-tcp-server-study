@@ -9,6 +9,7 @@ require_relative './redirect'
 
 require_relative './server'
 require_relative './request'
+require_relative './response'
 
 module Mock
   Middlewares = [

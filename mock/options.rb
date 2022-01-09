@@ -4,14 +4,14 @@ module Mock
       @request = request
     end
 
-    def call(status_line, headers, body)
+    def call(status, headers, body)
       if @request.method == 'OPTIONS'
-        status_line = 'HTTP/1.1 200 OK'
+        status = 200
         body = ''
         headers.push('Allow: OPTIONS, GET, HEAD')
       end
 
-      [status_line, headers, body]
+      [status, headers, body]
     end
   end
 end

@@ -11,14 +11,14 @@ module Mock
       @request = request
     end
 
-    def call(status_line, headers, body)
+    def call(status, headers, body)
       if LIST.has_key?(@request.path)
-        status_line = 'HTTP/1.1 307 Temporary Redirect'
+        status = 307
         headers.push("Location: #{LIST.fetch(@request.path)}")
         body = ''
       end
 
-      [status_line, headers, body]
+      [status, headers, body]
     end
   end
 end

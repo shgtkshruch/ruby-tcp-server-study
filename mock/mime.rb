@@ -12,13 +12,13 @@ module Mock
       @request = request
     end
 
-    def call(status_line, headers, body)
-      if (status_line.include?('200'))
+    def call(status, headers, body)
+      if (status == 200)
         extname = File.extname(@request.path)
         headers.push("Content-Type: #{MIME_TYPE.fetch(extname)}")
       end
 
-      [status_line, headers, body]
+      [status, headers, body]
     end
   end
 end

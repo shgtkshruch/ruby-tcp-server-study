@@ -4,14 +4,14 @@ module Mock
       @request = request
     end
 
-    def call(status_line, headers, body)
+    def call(status, headers, body)
       # https://datatracker.ietf.org/doc/html/rfc2616#section-9.4
       if @request.method == 'HEAD'
-        status_line = 'HTTP/1.1 200 OK'
+        status = 200
         body = ''
       end
 
-      [status_line, headers, body]
+      [status, headers, body]
     end
   end
 end

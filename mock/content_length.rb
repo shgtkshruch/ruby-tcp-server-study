@@ -4,12 +4,12 @@ module Mock
       @request = request
     end
 
-    def call(status_line, headers, body)
+    def call(status, headers, body)
       if %w[GET HEAD].include?(@request.method)
         headers.push("Content-Length: #{body.length}")
       end
 
-      [status_line, headers, body]
+      [status, headers, body]
     end
   end
 end

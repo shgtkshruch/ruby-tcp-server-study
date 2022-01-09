@@ -8,11 +8,11 @@ module Mock
       @request = request
     end
 
-    def call(status_line, headers, body)
+    def call(status, headers, body)
       # https://docs.ruby-lang.org/ja/latest/method/Time/s/httpdate.html
       headers.push("Date: #{Time.now.httpdate}")
 
-      [status_line, headers, body]
+      [status, headers, body]
     end
   end
 end

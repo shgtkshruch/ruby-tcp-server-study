@@ -6,19 +6,19 @@ module Mock
       @request = request
     end
 
-    def call(status_line, headers, body)
+    def call(status, headers, body)
       if %w[GET HEAD].include?(@request.method)
         file_path = PUBLIC_DIR_PATH + @request.path
 
         if File.exist?(file_path)
-          status_line = "HTTP/1.1 200 ok"
+          status = 200
           body = File.read(file_path)
         else
-          status_line = "HTTP/1.1 404 Not Found"
+          status = 404
         end
       end
 
-      [status_line, headers, body]
+      [status, headers, body]
     end
   end
 end
