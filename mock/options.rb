@@ -1,7 +1,7 @@
 module Mock
   class Options
     def initialize(request)
-      @request= request
+      @request = request
     end
 
     def call(status_line, headers, body)
