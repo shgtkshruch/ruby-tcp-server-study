@@ -1,3 +1,4 @@
+require_relative './basic_auth'
 require_relative './content_length'
 require_relative './files'
 require_relative './mime'
@@ -13,7 +14,8 @@ module Mock
     ContentLength,
     MIME,
     HEAD,
-    Options
+    Options,
+    BasicAuth
   ]
 
   def self.call(connection)
