@@ -1,26 +1,26 @@
 module Mock
   class Request
-    attr_reader :line, :headers
-
     def initialize(connection)
       @connection = connection
-      @line = connection.gets
-      @headers = _headers
     end
 
-    private
+    def line
+      @line ||= @connection.gets
+    end
 
-    def _headers
-      headers = []
+    def headers
+      @headers ||= begin
+        headers = []
 
-      while line = @connection.gets
-        break if line == "\r\n"
-        key, value = line.strip.split(': ')
-        headers.push({ key => value })
+        while line = @connection.gets
+          break if line == "\r\n"
+          key, value = line.strip.split(': ')
+          headers.push({ key => value })
+        end
+
+        pp headers
+        headers
       end
-
-      p headers
-      headers
     end
   end
 end
