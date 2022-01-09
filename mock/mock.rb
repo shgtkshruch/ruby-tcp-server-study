@@ -13,13 +13,13 @@ require_relative './response'
 
 module Mock
   Middlewares = [
-    Date,
     Files,
     ContentLength,
     MIME,
     HEAD,
     Options,
     Redirect,
-    BasicAuth
+    BasicAuth,
+    Date
   ]
 end
