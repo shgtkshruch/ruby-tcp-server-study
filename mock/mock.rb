@@ -7,6 +7,7 @@ require_relative './mime'
 require_relative './options'
 require_relative './redirect'
 
+require_relative './tcp'
 require_relative './server'
 require_relative './request'
 require_relative './response'
