@@ -5,9 +5,7 @@ module Mock
     end
 
     def call(status_line, headers, body)
-      method, path, http_version = @request.line.split
-
-      if %w[GET HEAD].include?(method)
+      if %w[GET HEAD].include?(@request.method)
         headers.push("Content-Length: #{body.length}")
       end
 

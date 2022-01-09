@@ -5,11 +5,8 @@ module Mock
     end
 
     def call(status_line, headers, body)
-      method, path, http_version = @request.line.split
-
-      if %w[GET HEAD].include?(method)
-        path = path == '/' ? '/index.html' : path
-        file_path = PUBLIC_DIR_PATH + path
+      if %w[GET HEAD].include?(@request.method)
+        file_path = PUBLIC_DIR_PATH + @request.path
 
         if File.exist?(file_path)
           status_line = "HTTP/1.1 200 ok"

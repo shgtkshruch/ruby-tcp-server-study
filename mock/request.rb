@@ -4,8 +4,17 @@ module Mock
       @connection = connection
     end
 
-    def line
-      @line ||= @connection.gets
+    def method
+      @method ||= line.split[0]
+    end
+
+    def path
+      path = line.split[1]
+      @path ||= path == '/' ? '/index.html' : path
+    end
+
+    def http_version
+      @http_version ||= line.split[2]
     end
 
     def headers
@@ -21,6 +30,12 @@ module Mock
         pp headers
         headers
       end
+    end
+
+    private
+
+    def line
+      @line ||= @connection.gets
     end
   end
 end

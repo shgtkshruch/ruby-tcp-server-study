@@ -12,9 +12,7 @@ module Mock
     end
 
     def call(status_line, headers, body)
-      method, path, http_version = @request.line.split
-
-      if path.include?(SECRET_PATH)
+      if @request.path.include?(SECRET_PATH)
         if authorization? && token_valid?
           status_line = 'HTTP/1.1 200 ok'
         else

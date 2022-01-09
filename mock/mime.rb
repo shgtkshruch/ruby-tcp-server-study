@@ -13,11 +13,8 @@ module Mock
     end
 
     def call(status_line, headers, body)
-      method, path, http_version = @request.line.split
-
       if (status_line.include?('200'))
-        path = path == '/' ? '/index.html' : path
-        extname = File.extname(path)
+        extname = File.extname(@request.path)
         headers.push("Content-Type: #{MIME_TYPE.fetch(extname)}")
       end
 

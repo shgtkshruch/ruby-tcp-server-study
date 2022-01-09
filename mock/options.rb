@@ -5,9 +5,7 @@ module Mock
     end
 
     def call(status_line, headers, body)
-      method, path, http_version = @request.line.split
-
-      if method == 'OPTIONS'
+      if @request.method == 'OPTIONS'
         status_line = 'HTTP/1.1 200 OK'
         body = ''
         headers.push('Allow: OPTIONS, GET, HEAD')
