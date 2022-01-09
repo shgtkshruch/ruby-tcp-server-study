@@ -1,5 +1,7 @@
 module Mock
   class Files
+    PUBLIC_DIR_PATH='./public'
+
     def initialize(request)
       @request = request
     end

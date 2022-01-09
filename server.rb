@@ -1,7 +1,7 @@
 require 'socket'
 require_relative './mock/mock'
 
-PORT = 1234
+PORT = 1235
 ENDPOINT='0.0.0.0'
 
 # Socket::AF_INET: => 2
@@ -38,5 +38,5 @@ loop do
   print 'Remote address: '
   p connection.remote_address
 
-  Mock.call(connection)
+  Mock::Server.new(connection).start
 end
