@@ -10,7 +10,14 @@ module Mock
 
     def path
       path = line.split[1]
+      path = path[/\A\/[a-z]*\.?[a-z]*/]
       @path ||= path == '/' ? '/index.html' : path
+    end
+
+    def query
+      path = line.split[1]
+      query = path[/\?[a-z]*/]
+      @query = query ? query[1..] : ''
     end
 
     def http_version

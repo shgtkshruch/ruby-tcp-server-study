@@ -19,7 +19,7 @@ module Mock
     private
 
     def download_request?
-      @request.method == 'GET' && @request.path == '/download.html'
+      @request.method == 'GET' && @request.query.include?('download')
     end
   end
 end
