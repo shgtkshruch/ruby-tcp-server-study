@@ -17,7 +17,7 @@ module Mock
     def query
       path = line.split[1]
       query = path[/\?[a-z]*/]
-      @query = query ? query[1..] : ''
+      @query ||= query ? query[1..] : ''
     end
 
     def http_version
