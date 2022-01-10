@@ -10,7 +10,8 @@ module Mock
 
     def call(status, headers, body)
       if download_request?
-        headers.push('Content-Disposition: attachment; filename="cool.html"')
+        filename = @request.path[1..]
+        headers.push("Content-Disposition: attachment; filename=#{filename}")
       end
 
       [status, headers, body]
