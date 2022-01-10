@@ -1,3 +1,5 @@
+# https://datatracker.ietf.org/doc/html/rfc2616#section-9.4
+
 module Mock
   class HEAD
     def initialize(request)
@@ -5,7 +7,6 @@ module Mock
     end
 
     def call(status, headers, body)
-      # https://datatracker.ietf.org/doc/html/rfc2616#section-9.4
       if @request.method == 'HEAD'
         status = 200
         body = ''

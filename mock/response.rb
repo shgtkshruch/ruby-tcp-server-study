@@ -87,7 +87,6 @@ module Mock
     end
 
     def build_response
-      # rfc2616 4.1 Message Types
       # https://datatracker.ietf.org/doc/html/rfc2616#section-4.1
       status_line + "\r\n" +
       "#{@headers.join("\r\n")}" + "\r\n" +

@@ -1,4 +1,5 @@
 # https://datatracker.ietf.org/doc/html/rfc7617
+
 require 'base64'
 
 module Mock
