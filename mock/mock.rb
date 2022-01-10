@@ -1,5 +1,6 @@
 require_relative './basic_auth'
 require_relative './content_length'
+require_relative './content_disposition'
 require_relative './date'
 require_relative './files'
 require_relative './head'
@@ -16,6 +17,7 @@ module Mock
   Middlewares = [
     Files,
     ContentLength,
+    ContentDisposition,
     MIME,
     HEAD,
     Options,
