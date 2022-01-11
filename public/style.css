@@ -1,4 +1,8 @@
 body {
-  background-color: tomato;
-  color: #fff;
+  height: 100vh;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-family: Helvetica, sans-serif;
+  font-size: 2rem;
 }
