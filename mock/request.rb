@@ -1,3 +1,5 @@
+require 'uri'
+
 module Mock
   class Request
     def initialize(connection)
@@ -10,14 +12,13 @@ module Mock
 
     def path
       path = line.split[1]
-      path = path[/\A\/[a-z]*\.?[a-z]*/]
+      path = URI.parse(path).path
       @path ||= path == '/' ? '/index.html' : path
     end
 
     def query
       path = line.split[1]
-      query = path[/\?[a-z]*/]
-      @query ||= query ? query[1..] : ''
+      @query ||= URI.parse(path).query || ''
     end
 
     def http_version
